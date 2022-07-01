@@ -1,14 +1,14 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import Button from 'bootstrap/js/dist/button.js';
-import Navbar from './Navbar.js';
+
+
+import UserNavbar from './UserNavbar.js';
 import Footer from './Footer.js';
 import logoPlaceholder from './images/Rectangle 46.png'
-import LoginForm from './LoginForm.js';
-import LogIn from './SignIn.js';
-import SignIn from './SignIn.js';
+import Comment from './Comment.js';
+
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import "chartjs-plugin-doughnut-innertext";
 import {
@@ -21,34 +21,26 @@ import { Link } from "react-router-dom";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
+
+// establish donut chart
 ChartJS.register(ArcElement);
 
 export const data = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  labels: [''],
   datasets: [
     {
-      label: '# of Votes',
+      label: 'equality score',
       data: [9, 1],
       backgroundColor: [
         '#111344',
         'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
       ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
+      borderColor: [''
       ],
       borderWidth: 0,
     },
   ],
-  text: '23%'
+  text: ''
 };
 
 
@@ -58,13 +50,12 @@ function Dashboard() {
   return (
 
     <div className="App">
-       <Navbar></Navbar>
+       <UserNavbar></UserNavbar>
       <header>
         <div className="content">
 
-        <MDBContainer>
 
-        <MDBRow center>
+        <MDBRow center className="comment-background">
           <div className="d-flex flex-row justify-content-center dashboard-header">
           <MDBCol  size='6' >
             <MDBCol className='med-margin'>
@@ -81,8 +72,28 @@ function Dashboard() {
           </div>
         </MDBRow>
 
-        <MDBRow center>
-        <MDBCol  className='med-margin' >
+
+        <MDBContainer>
+
+
+{/* donut chart analysis */}
+        <MDBRow>
+        <MDBCol >
+          <h1 className='med-margin'>Your Workplace</h1>
+
+                    {/* company logo and name */}
+        <MDBRow center className="d-flex justify-content-center">
+
+        <MDBCol size='3' className="d-flex justify-content-end">
+        <img src={logoPlaceholder} alt="logo" />
+        </MDBCol>
+        <MDBCol size='3' className="d-flex justify-content-start">
+        <p className="company-descriptor">Your Company Title and Logo</p>
+        </MDBCol>
+
+        </MDBRow>
+
+          {/* donut chart information */}
           <div className="med-margin" width='100%'>
         <Doughnut data={data} options={{
           // see all defaults / options below!
@@ -99,13 +110,20 @@ function Dashboard() {
         <p>Company Equality Score</p>
         </MDBCol>
         </MDBRow>
+
         </MDBContainer>
+        {/* //comment section area */}
+
         <div className="comment-background">
-        <MDBRow className="comment-background">
+        <MDBRow >
         <MDBCol className="comment-background">
          <h2>Workplace Reported Wages</h2>
          <button type="button" className="btn btn-primary">Filter</button>
         </MDBCol>
+      </MDBRow>
+
+      <MDBRow >
+        <Comment></Comment>
       </MDBRow>
         </div>
 

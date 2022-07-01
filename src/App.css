@@ -1,3 +1,93 @@
+
+
+/* ambers added styles */
+
+h1 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700 !important ;
+}
+
+h2 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700 !important ;
+}
+
+h3{
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700 !important ;
+}
+
+h4{
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+p{
+  font-family: 'Open Sans', sans-serif;
+}
+
+.med-margin {
+  margin: 40px;
+}
+
+.comment-background{
+  background-color: #F7F8FA;
+  padding: 20px;
+}
+
+.company-descriptor{
+  text-align: left;
+  color: #6C757D;
+}
+
+.light-text{
+  color: #F7F8FA;
+}
+
+.userbar{
+  background-color: #111344 !important;
+}
+
+.years {
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+  color: #ADB5BD;
+  line-height: 12px;
+}
+
+.user-descriptor{
+  text-align: left;
+  font-family: 'Chakra Petch';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+color: #6C757D;
+line-height: 12px;
+}
+
+.experience {
+  text-align: left;
+  font-family: 'Open Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 12px;
+color: #6C757D;
+}
+
+.compensation{
+  text-align: left;
+  font-family: 'Chakra Petch';
+font-style: normal;
+font-weight: 700;
+line-height: 12px;
+color: #111344;
+line-height: 16px;
+}
+
+
+
+/* original react styling */
+
 .App {
   text-align: center;
 }
@@ -13,14 +103,7 @@
   }
 }
 
-.med-margin {
-  margin: 40px;
-}
 
-.comment-background{
-  background-color: #F7F8FA;
-  padding: 20px;
-}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

@@ -1,7 +1,10 @@
-import logo from './logo.svg';
+
 import './App.css';
 // import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import { Link } from "react-router-dom";
+import avatar from './images/Avatar.png'
+import logohome from './images/Rectangle 44.png'
 
 import React, { useState } from 'react';
 import {
@@ -27,11 +30,15 @@ function UserNavbar() {
   const [showBasic, setShowBasic] = useState(false);
 
   return (
-    <MDBNavbar expand='lg' light bgColor='light'>
+    <MDBNavbar expand='lg' dark className="userbar" >
       <MDBContainer fluid>
-        <MDBNavbarBrand href='#'>Brand</MDBNavbarBrand>
+        <MDBNavbarBrand ><Link to="/userprofile"><img src={avatar} alt="profile image" /></Link></MDBNavbarBrand>
 
-        <MDBNavbarToggler
+        {/* logo that links to homepage */}
+        <Link to="/"><img src={logohome} alt="logo" /></Link>
+
+        {/* hamburger icon */}
+        <MDBNavbarToggler 
           aria-controls='navbarSupportedContent'
           aria-expanded='false'
           aria-label='Toggle navigation'
@@ -48,39 +55,20 @@ function UserNavbar() {
               </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href='#'>Link</MDBNavbarLink>
+              <MDBNavbarLink><Link to="/discover">Discover</Link></MDBNavbarLink>
             </MDBNavbarItem>
-
             <MDBNavbarItem>
-              <MDBDropdown>
-                <MDBDropdownToggle tag='a' className='nav-link'>
-                  Dropdown
-                </MDBDropdownToggle>
-                <MDBDropdownMenu>
-                  <MDBDropdownItem>
-                    <MDBDropdownLink>Action</MDBDropdownLink>
-                  </MDBDropdownItem>
-                  <MDBDropdownItem>
-                    <MDBDropdownLink>Another action</MDBDropdownLink>
-                  </MDBDropdownItem>
-                  <MDBDropdownItem>
-                    <MDBDropdownLink>Something else here</MDBDropdownLink>
-                  </MDBDropdownItem>
-                </MDBDropdownMenu>
-              </MDBDropdown>
-            </MDBNavbarItem>
-
-            <MDBNavbarItem>
-              <MDBNavbarLink disabled href='#' tabIndex={-1} aria-disabled='true'>
-                Disabled
-              </MDBNavbarLink>
-            </MDBNavbarItem>
-          </MDBNavbarNav>
-
-          <form className='d-flex input-group w-auto'>
-            <input type='search' className='form-control' placeholder='Type query' aria-label='Search' />
-            <MDBBtn color='primary'>Search</MDBBtn>
+            <label htmlFor='user-search' className='d-flex form-label light-text'>
+        Search for other Workplaces
+      </label>
+        <form className='d-flex input-group w-auto'>
+            <input type='search' className='form-control' id="user-search" placeholder='Type query' aria-label='Search' />
+            <MDBBtn color='primary'><MDBIcon icon='search' fas /></MDBBtn>
           </form>
+          </MDBNavbarItem>
+
+
+          </MDBNavbarNav>
         </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>

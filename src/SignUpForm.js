@@ -3,7 +3,7 @@ import { MDBInput } from 'mdb-react-ui-kit';
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import { MDBRadio } from 'mdb-react-ui-kit';
 
-function LoginForm() {
+function SignUpForm() {
 
 
     return (
@@ -17,13 +17,14 @@ function LoginForm() {
    
       <MDBInput label='Password' id='formControlDefault' type='text' size="sm" />
       <br />   
+      <MDBInput label='Re-enter Password' id='formControlDefault' type='text' size="sm" />
       </MDBRow>     
       <MDBRow>
         <MDBCol size='sm'>
-        <MDBRadio name='flexRadioDefault' id='flexRadioDefault1' label='Remember Me' />
+    
         </MDBCol>
         <MDBCol size='sm'>
-          <p>Forgot Password</p>
+        
         </MDBCol>
       </MDBRow>
     </MDBContainer>
@@ -34,4 +35,4 @@ function LoginForm() {
     );
 }
 
-export default LoginForm;
+export default SignUpForm;

@@ -13,6 +13,14 @@
   }
 }
 
+.med-margin {
+  margin: 40px;
+}
+
+.comment-background{
+  background-color: #F7F8FA;
+  padding: 20px;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

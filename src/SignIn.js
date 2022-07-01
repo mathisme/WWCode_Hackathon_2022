@@ -6,34 +6,26 @@ import Button from 'bootstrap/js/dist/button.js';
 import Navbar from './Navbar.js';
 import Footer from './Footer.js';
 import LoginForm from './LoginForm.js';
-import LogIn from './SignIn.js';
-import SignIn from './SignIn.js';
-import {
-  BrowserRouter,
-  Router,
-  Route,
-  Routes
-} from "react-router-dom";
+// import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
 
-function App() {
+function SignIn() {
 
 
   return (
 
     <div className="App">
-       <Navbar></Navbar>
-      <header>
-        <div className="content">
 
-           <SignIn></SignIn>
-        </div>
-      </header>
-      <Footer></Footer>
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1>Log in to your Account</h1>
+        <p>Welcome back! Please enter your details.</p>
+        <LoginForm></LoginForm>
+        <button type="button" className="btn btn-primary"><Link to="/dashboard">Sign In</Link></button>
+
     </div>
 
   );
 }
 
-export default App;
+export default SignIn;

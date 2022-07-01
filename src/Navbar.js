@@ -1,9 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 // import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
+
 
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import {
   MDBContainer,
   MDBNavbar,
@@ -27,9 +28,9 @@ function Navbar() {
   const [showBasic, setShowBasic] = useState(false);
 
   return (
-    <MDBNavbar expand='lg' light bgColor='light'>
+    <MDBNavbar expand='m' dark bgColor='dark'>
       <MDBContainer fluid>
-        <MDBNavbarBrand href='#'>Brand</MDBNavbarBrand>
+        <MDBNavbarBrand href='#'><Link to="/">Brand</Link></MDBNavbarBrand>
 
         <MDBNavbarToggler
           aria-controls='navbarSupportedContent'
@@ -43,8 +44,9 @@ function Navbar() {
         <MDBCollapse navbar show={showBasic}>
           <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
             <MDBNavbarItem>
+            <Link to="/signup">Sign Up</Link>
             </MDBNavbarItem>
-
+            <Link to="/discover">Discover</Link>
             <MDBNavbarItem>
               <MDBDropdown>
               </MDBDropdown>

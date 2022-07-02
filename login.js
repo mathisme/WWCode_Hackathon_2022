@@ -27,27 +27,27 @@ var controller = {
         Http.send(JSON.stringify(data));
         Http.onreadystatechange = function() {
             if ((this.readyState==4)&&(this.status==200)) {
-                let hash = Http.responseText.replaceAll('"', '');
                 
+                let hash = Http.responseText.replaceAll('"', '');
+                console.log(hash);
                 //here I need to check the response, if it's an empty string it will not have been found
                 // 
+                if (hash==""){
+                    //just doing this for testing
+                    console.log("no such user")
+                    return
+                    }
                 // if the password doesn't exist say so in the incorrect_p paragraph
                 // else save the hash to a cookie, then redirect to my_company.html
                 // also, first, be sure to clear incorrect_p paragraph
-
                 
-                console.log(hash);
-                
-                let date = new Date();
-                let tomorrow = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59);
-                let expires = " expires=" + tomorrow.toGMTString()+";";
-                let cookie_str = "job_user="+hash+";"+expires+" path=/";
-                console.log(cookie_str);
-                document.cookie = cookie_str;
-                // just for testing
-                console.log(document.cookie);
-                
-                document.href = "my_company.html";
+                // as I'm doing this locally cookies don't work with localhost so I need to use local storage
+                //let date = new Date();
+                //let tomorrow = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59);
+                //let expires = " expires=" + tomorrow.toGMTString()+";";
+                //let cookie_str = "job_user="+hash+";"+expires+" path=/;";
+                localStorage.setItem('job_user',hash);
+                window.location.href = "my_company.html";
             }}        
 
 

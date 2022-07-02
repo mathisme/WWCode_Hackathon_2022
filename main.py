@@ -4,6 +4,8 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import jwt
 import os
+from pathlib import Path
+import sqlite3
 
 app = FastAPI()
 
@@ -36,7 +38,16 @@ def log_in(info:User_login):
     # get the login details
     user = {"user":info.username,"password":info.pwd}    
     # send a SQL query  NEED TO DO
-
+    data_path = Path("data.db")
+    con = sqlite3.connect('data.db')
+    cur = con.cursor()
+    # if the login doesn't exist return ""
+    query = "SELECT password FROM employee WHERE name='{}';".format(info.username)
+    print(query)
+    res = cur.execute(query)
+    con.close()
+    if res.rowcount == -1:
+        return ""
     # if the login exists and the password is correct make a hash with the username and pwd
     # NEED TO CHECK THE RESULTS FROM THE SQL QUERY
     with open('secret.txt') as f:

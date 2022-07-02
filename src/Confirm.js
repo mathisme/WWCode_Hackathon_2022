@@ -11,7 +11,7 @@ import Footer from './Footer.js';
 import LoginForm from './LoginForm.js';
 
 
-function SignUp() {
+function Confirm() {
 
 
   return (
@@ -19,14 +19,13 @@ function SignUp() {
     <div className="App">
 <Navbar></Navbar>
         <img src={logoPlaceholder} className='med-margin'  alt="logo" />
-        <h1>Create an Account</h1>
-        <p>Please enter your details.</p>
-        <SignUpForm></SignUpForm>
-        <Link to="/confirm"><button type="button" className="btn btn-primary med-margin">Submit</button></Link>
+        <h1>Thank you!</h1>
+        <p>Please confirm your email.</p>
+        <Link to="#"><button type="button" className="btn btn-primary med-margin">Rsend Confirmation Email</button></Link>
 <Footer></Footer>
     </div>
 
   );
 }
 
-export default SignUp;
+export default Confirm;

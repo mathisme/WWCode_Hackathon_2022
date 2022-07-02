@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import SignUp from './SignUp.js';
 import Dashboard from './Dashboard.js';
+import Discover from './Discover.js';
+import Confirm from './Confirm.js';
+import WorkplaceProfile from './WorkplaceProfile.js';
 import {
   BrowserRouter,
   Routes,
@@ -19,6 +22,9 @@ root.render(
       <Route path="/" element={<App />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="dashboard" element={<Dashboard />} />
+      <Route path="discover" element={<Discover />} />
+      <Route path="confirm" element={<Confirm />} />
+      <Route path="workplaceprofile" element={<WorkplaceProfile />} />
       {/* </React.StrictMode> */}
   </Routes>
 

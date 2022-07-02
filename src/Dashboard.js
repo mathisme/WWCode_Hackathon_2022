@@ -7,9 +7,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import UserNavbar from './UserNavbar.js';
 import Footer from './Footer.js';
 import logoPlaceholder from './images/Rectangle 46.png'
-import Comment from './Comment.js';
+import Comments from './Comments.js';
+import MyComponent from './EmployeeInfo';
 
-import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBRow, MDBIcon, MDBCol } from 'mdb-react-ui-kit';
 import "chartjs-plugin-doughnut-innertext";
 import {
   BrowserRouter,
@@ -50,12 +51,14 @@ function Dashboard() {
   return (
 
     <div className="App">
+      
        <UserNavbar></UserNavbar>
       <header>
         <div className="content">
 
 
         <MDBRow center className="comment-background">
+
           <div className="d-flex flex-row justify-content-center dashboard-header">
           <MDBCol  size='6' >
             <MDBCol className='med-margin'>
@@ -118,12 +121,13 @@ function Dashboard() {
         <MDBRow >
         <MDBCol className="comment-background">
          <h2>Workplace Reported Wages</h2>
-         <button type="button" className="btn btn-primary">Filter</button>
+         <button type="button" className="button-dark">Filter <MDBIcon icon='filter' fas /></button>
         </MDBCol>
       </MDBRow>
 
       <MDBRow >
-        <Comment></Comment>
+      <MyComponent></MyComponent>
+        <Comments></Comments>
       </MDBRow>
         </div>
 

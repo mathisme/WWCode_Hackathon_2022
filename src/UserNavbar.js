@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from "react-router-dom";
 import avatar from './images/Avatar.png'
 import logohome from './images/Rectangle 44.png'
+import { MDBPagination, MDBPaginationItem, MDBPaginationLink } from 'mdb-react-ui-kit';
 
 import React, { useState } from 'react';
 import {
@@ -30,9 +31,9 @@ function UserNavbar() {
   const [showBasic, setShowBasic] = useState(false);
 
   return (
-    <MDBNavbar expand='lg' dark className="userbar" >
-      <MDBContainer fluid>
-        <MDBNavbarBrand ><Link to="/userprofile"><img src={avatar} alt="profile image" /></Link></MDBNavbarBrand>
+    <MDBNavbar dark className="userbar" >
+      <MDBContainer >
+        <MDBNavbarBrand ><Link to="/dashboard"><img src={avatar} alt="profile image" /></Link></MDBNavbarBrand>
 
         {/* logo that links to homepage */}
         <Link to="/"><img src={logohome} alt="logo" /></Link>

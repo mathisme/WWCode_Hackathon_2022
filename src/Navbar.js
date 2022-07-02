@@ -28,7 +28,7 @@ function Navbar() {
   const [showBasic, setShowBasic] = useState(false);
 
   return (
-    <MDBNavbar expand='m' dark bgColor='dark'>
+    <MDBNavbar expand='m' dark className="userbar">
       <MDBContainer fluid>
         <MDBNavbarBrand href='#'><Link to="/">Brand</Link></MDBNavbarBrand>
 

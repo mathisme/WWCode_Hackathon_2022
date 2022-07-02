@@ -1,0 +1,10 @@
+        const Http = new XMLHttpRequest();
+        Http.open("POST","http://127.0.0.1:8000/");
+        Http.setRequestHeader("Content-type","application/json;charset=UTF-8");
+        // here I will add the auth bearer
+        Http.send(JSON.stringify(data));
+        Http.onreadystatechange = function() {
+            if ((this.readyState==4)&&(this.status==200)) {
+                view.output_paragraph.textContent = Http.responseText;
+            }}
+        }

@@ -1,2 +1,6 @@
-*.sublime-project
-*.sublime-workspace
+data.db
+create_db.py
+secret.txt
+__pycache__/
+.ipynb_checkpoints/
+*.ipynb

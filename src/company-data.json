@@ -1,4 +1,5 @@
-[
+{
+   "companies": [
   {
     "id": "62bfaa763ba567b643b419ff",
     "email": "@Isoplex.com",
@@ -81,3 +82,4 @@
     }
   }
 ]
+}

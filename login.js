@@ -33,9 +33,8 @@ var controller = {
                 //here I need to check the response, if it's an empty string it will not have been found
                 // 
                 if (hash==""){
-                    //just doing this for testing
-                    console.log("no such user")
-                    return
+                    view.incorrect_p.textContent = "Please check your username or password";
+                    return;
                     }
                 // if the password doesn't exist say so in the incorrect_p paragraph
                 // else save the hash to a cookie, then redirect to my_company.html

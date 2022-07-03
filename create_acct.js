@@ -11,7 +11,8 @@ var view = {
     pay_period : document.getElementById("pay_period"),
     experience : document.getElementById("experience"),
     time_unit : document.getElementById("time_unit"),
-    submit_button : document.getElementById("submit")
+    submit_button : document.getElementById("submit"),
+    invalid_user : document.getElementById("invalid_user")
 };
 var controller = {
     init : function(){ // this is done
@@ -46,11 +47,25 @@ var controller = {
         Http.send(JSON.stringify(data));
         Http.onreadystatechange = function() {
             if ((this.readyState==4)&&(this.status==200)) {
-                console.log(Http.responseText);
+                // if the response is blank, it means the account exists
+                // can check this through username or email address
+                // if time will want to see which exists username or email
+                hash = Http.responseText.replaceAll('"','');
+                if (hash==""){
+                    view.invalid_user.textContent = "An account exists for either this username or email";
+                    return;                    
+                }
+
+                // get the hash back and save it in a cookie
+                // redirect to my_company page
+                localStorage.setItem('job_user',hash);
+                window.location.href = "my_company.html";                
+                
+                
             }}         
         
-        // get the hash back and save it in a cookie
-        // redirect to my_company page
+
+
     },
     check_pwd : function(){  // this is done
         console.log("checking passwords");

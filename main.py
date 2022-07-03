@@ -37,7 +37,10 @@ def log_in(info:User_login):
 
     # get the login details
     user = {"user":info.username,"password":info.pwd}    
-    # send a SQL query  NEED TO DO
+    
+    # send a SQL query  NEED TO FINISH
+    
+    
     data_path = Path("data.db")
     con = sqlite3.connect('data.db')
     cur = con.cursor()
@@ -45,11 +48,13 @@ def log_in(info:User_login):
     query = "SELECT password FROM employee WHERE name='{}';".format(info.username)
     print(query)
     res = cur.execute(query)
+
+    pwd_response = res.fetchall()
     con.close()
-    if res.rowcount == -1:
+    if len(pwd_response) == 0:
         return ""
-    # if the login exists and the password is correct make a hash with the username and pwd
-    # NEED TO CHECK THE RESULTS FROM THE SQL QUERY
+    if pwd_response[0][0]!=info.pwd:
+        return ""
     with open('secret.txt') as f:
         secret = f.read()
     hashstr = jwt.encode(user, secret, algorithm="HS256")
@@ -57,28 +62,60 @@ def log_in(info:User_login):
     # return a hash code for the cookie
     return hashstr
     
-# need to add a post to set user info for creating an account
-# remember you need to send a sql query to see if the company exists based on the domain
-# if it doesn't exist create it in the db
-# be sure to also check to see if the user exists
-# if the user does exist raise an error
 @app.post("/create")
 def create_acct(info:Acct_info):
-    # just for testing
-    str1 = "username: "+info.username+", "
-    str1 += "password: "+info.password+", "
-    str1 += "gender: "+info.gender+", "
-    str1 += "email: "+info.email+", "
-    str1 += "role: "+info.role+", "
-    str1 += "salary: "+str(info.salary)+", "
-    str1 += "pay period: "+info.pay_period+", "
-    str1 += "experience: "+str(info.experience)
-    return str1
+    
+    
+    # query the db, check to see if the username exists or the password exists
+    # if so, return ""
+    # insert into the database
+        # first parse the domain of the email
+        # query the company and see if the company exists by domain
+        # select id from company where company = domain     
+        # if the company doesn't exist, you need to create the company then query for the id
+        # then 
+    query = "SELECT * FROM employee WHERE name='{}' OR email='{}';".format(info.username, info.email)
+    print(query)
+    con = sqlite3.connect('data.db')
+    cur = con.cursor()
+    res = cur.execute(query)
+    if len(res.fetchall())!=0:
+        con.close()
+        return ""
+    domain = info.email.split('@')[1]
+    query = "SELECT ID FROM company WHERE domain='{}';".format(domain)
+    res = cur.execute(query)    
+    if len(res.fetchall())==0:
+       query = "INSERT INTO company(domain) VALUES('{}');".format(domain)
+       cur.execute(query)
+    query = "SELECT ID FROM company WHERE domain='{}';".format(domain)
+    res = cur.execute(query) # ok this is redundant
+    id = (res.fetchall())[0][0] 
+    # now need to insert user info
+
+    query = '''
+        INSERT INTO employee(name,company_id,email,password,role,gender,pay, pay_period, exp)
+        VALUES(?,?,?,?,?,?,?,?,?);
+    '''
+    cur.execute(query,(info.username,id,info.email,info.password,info.role,info.gender,info.salary,info.pay_period, info.experience))  
+    con.commit()    
+    con.close()
+    with open('secret.txt') as f:
+        secret = f.read()
+    user = {"user":info.username,"password":info.password} 
+    hashstr = jwt.encode(user, secret, algorithm="HS256")
+
+    return hashstr
 
 
-
+# want to see if username in db or email in db
 # need to add a post to get company info given the hash
 # here I need to decide if I should send all info or in the js post ask for a page
 # am going to do 25 per page
+
+
+# also need a get company info
+
+# also need a get user info
 
 

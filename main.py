@@ -117,5 +117,7 @@ def create_acct(info:Acct_info):
 # also need a get company info
 
 # also need a get user info
+# just a function, my company will be sending the hash code, use this to create a acct info object
+
 
 

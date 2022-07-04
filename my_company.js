@@ -1,35 +1,50 @@
 console.log("testing");
 
-var view = {};
+var view = { // need to add a logout button which clears everything from local storage and returns to login page
+    me_div : document.getElementById("me"),
+    company_info_div : document.getElementById("company"),
+    employee_listing_div : document.getElementById("employees"),
+    navigation_div : document.getElementById("navigation")
+};
 
 var controller = {
     init : function(){
-        // first thing I need to do is get the cookie
-        // what I want to try now is getting and printing out the cookie
-/* I was using cookies but it doesn't work with localhost
-        let cookies = document.cookie.split(";");
-        let cookie_found = false;
-        let i = 0;
-        while ((!cookie_found)&&(i < cookies.length)){
-            if(cookies[i].includes("job_user")){
-                let hash = cookies[i].split("=")[1];
-                cookie_found = true;
-                // now I need to make the request
-                console.log(hash);                
-            }
-            i += 1;
+        // here's a question,should I check to see if local storage has a page_number value
+        // if not, set it to 1, if so get it bc you will need it for the request
+        // then for navigation, instead of just adjusting data, you reload page
+        // could also see if total number is in local storage
+        // 
+        let userHash=localStorage.getItem('job_user');
+        console.log(userHash);
+        
+        // send a request to get the company domain so you can add the logo
+        
+        let page = localStorage.getItem("job_page");
+        let request_required = false;        
+        if  (!page){
+            page = "1";
+            localStorage.setItem("job_page",page);
         }
-*/
+        let last_checked = localStorage.getItem("job_date");
+        if (!last_checked){
+            last_checked = new Date();
+            localStorage.setItem("job_date",last_checked);
+            request_required = true;
+        }
+        if (Date.parse(new Date())-Date.parse(last_checked)>86000000){request_required=true;}
+        let num_employees = localStorage.getItem("job_totals");
+        if (!num_employees) {request_required=true;}
+        if (request_required){
+           /*
+           sends a request for the number of employees
+           at the persons company
+           updates the job_date and job_totals values in local storage
+           */
+           
+        }
         
-        let user=localStorage.getItem('job_user');
-        console.log(user);
-        
-        
-        // then I need to send a request to the server to get just the user info
-        // and add the user info to the user div
-        // then I need to send a request with the cookie and get the company info
-        // or maybe I only need 1 request.
-        
+       // can update the nav first based on the page and number of employees
+       // now you need to get your info and the employee info (based on page)
         
     }
     
